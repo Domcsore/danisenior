@@ -1,0 +1,10 @@
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  height: 100%;
+}
+
+/*# sourceMappingURL=connect.css.map */

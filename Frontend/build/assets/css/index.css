@@ -1,0 +1,148 @@
+header {
+  display: flex;
+  justify-content: space-between;
+}
+header #cta {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+header #cta button {
+  width: 100%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+main #overview {
+  flex-shrink: 0;
+  margin: auto 0;
+  display: flex;
+  justify-content: space-between;
+}
+main #overview > section:first-child {
+  min-width: 40%;
+  max-width: 40%;
+}
+main #overview > section:last-child {
+  min-width: 53%;
+  max-width: 53%;
+}
+main #overview > section h3 {
+  text-align: center;
+  margin-bottom: 0.8em;
+}
+main #overview > section#dj {
+  display: flex;
+  flex-direction: column;
+}
+main #overview > section > section {
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+}
+main #overview > section > section.grid {
+  display: -ms-grid;
+  display: grid;
+}
+main #overview > section > section#singer-tiles {
+  grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr 1fr;
+}
+main #overview > section > section#singer-tiles > img {
+  display: block;
+  max-width: 100%;
+}
+main #overview > section > section#singer-tiles > img:nth-child(1) {
+  grid-column: 1;
+  -ms-grid-column: 1;
+  grid-row: 1;
+  -ms-grid-row: 1;
+}
+main #overview > section > section#singer-tiles > img:nth-child(2) {
+  grid-column: 2;
+  -ms-grid-column: 2;
+  grid-row: 1;
+  -ms-grid-row: 1;
+}
+main #overview > section > section#singer-tiles > img:nth-child(3) {
+  grid-column: 3;
+  -ms-grid-column: 3;
+  grid-row: 1;
+  -ms-grid-row: 1;
+}
+main #overview > section > section#singer-tiles > img:nth-child(4) {
+  grid-column: 1;
+  -ms-grid-column: 1;
+  grid-row: 2;
+  -ms-grid-row: 2;
+}
+main #overview > section > section#singer-tiles > img:nth-child(5) {
+  grid-column: 2;
+  -ms-grid-column: 2;
+  grid-row: 2;
+  -ms-grid-row: 2;
+}
+main #overview > section > section#singer-tiles > img:nth-child(6) {
+  grid-column: 3;
+  -ms-grid-column: 3;
+  grid-row: 2;
+  -ms-grid-row: 2;
+}
+main #overview > section > section#singer-tiles > img:nth-child(7) {
+  grid-column: 1;
+  -ms-grid-column: 1;
+  grid-row: 3;
+  -ms-grid-row: 3;
+}
+main #overview > section > section#singer-tiles > img:nth-child(8) {
+  grid-column: 2;
+  -ms-grid-column: 2;
+  grid-row: 3;
+  -ms-grid-row: 3;
+}
+main #overview > section > section#singer-tiles > img:nth-child(9) {
+  grid-column: 3;
+  -ms-grid-column: 3;
+  grid-row: 3;
+  -ms-grid-row: 3;
+}
+main #overview > section > section#dj-tiles {
+  flex-basis: 100%;
+  grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr;
+}
+main #overview > section > section#dj-tiles > div {
+  background-size: cover;
+}
+main #overview > section > section#dj-tiles > div:nth-child(1) {
+  grid-column: 1;
+  -ms-grid-column: 1;
+  grid-row: 1;
+  -ms-grid-row: 1;
+}
+main #overview > section > section#dj-tiles > div:nth-child(2) {
+  grid-column: 2;
+  -ms-grid-column: 2;
+  grid-row: 1;
+  -ms-grid-row: 1;
+}
+main #overview > section > section#dj-tiles > div:nth-child(3) {
+  grid-column: 1;
+  -ms-grid-column: 1;
+  grid-row: 2;
+  -ms-grid-row: 2;
+}
+main #overview > section > section#dj-tiles > div:nth-child(4) {
+  grid-column: 2;
+  -ms-grid-column: 2;
+  grid-row: 2;
+  -ms-grid-row: 2;
+}
+
+/*# sourceMappingURL=index.css.map */

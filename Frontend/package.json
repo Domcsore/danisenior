@@ -1,0 +1,8 @@
+{
+  "name": "danisenior",
+  "version": "1.0.0",
+  "description": "Front end for Dani Senior",
+  "main": "index.js",
+  "author": "Dominic <domcsore@googlemail.com>",
+  "license": "MIT"
+}
