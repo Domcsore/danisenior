@@ -1,11 +1,22 @@
 import nodemailer from "nodemailer";
 import express from "express";
+import config from "config";
 
 interface ContactData {
     name: string;
     email: string;
     message: string;
     ref: string;
+}
+
+interface IRefOption {
+    ref: string;
+    email: string;
+}
+
+interface IRefOptions {
+    default: string;
+    options: IRefOption[];
 }
 
 class StatusError extends Error {
@@ -48,17 +59,32 @@ function contactDataFromBody(body: any): ContactData {
     }
 }
 
+function getOutgoingEmail(refOptions: IRefOptions, ref: string): string {
+    let results = refOptions.options.filter(option => option.ref === ref);
+    let result = results[0];
+
+    if (result) {
+        console.log("ref email")
+        return result.email;
+    }
+
+    console.log("default email");
+    return refOptions.default;
+}
+
 const app = express();
 
 app.locals.transporter = nodemailer.createTransport({
-    host: "",
-    port: 587,
+    host: config.get('Email.outgoingServer'),
+    port: 465,
     secure: true,
     auth: {
-        user: "test",
-        pass: "test"
+        user: config.get('Email.user'),
+        pass: config.get('Email.password')
     }
 });
+
+app.locals.refs = <IRefOptions>config.get('Email.refOptions');
 
 app.use(express.json());
 
@@ -70,15 +96,17 @@ app.post('/contact', [(req: express.Request, res: express.Response, next:express
     }
     next();
 }, async (req: express.Request, res: express.Response, next:express.NextFunction) => {
-    //todo add to email, ref dependant
+    let outgoingEmail = getOutgoingEmail(app.locals.refs, res.locals.data.ref);
 
     try {
         let info = await app.locals.transporter.sendMail({
             from: `"${res.locals.data.name}" <${res.locals.data.email}>`,
-            to: res.locals.data.email,
+            to: outgoingEmail,
             subject: `You have an enquiry from ${res.locals.data.name}`,
             text: `Name: ${res.locals.data.name}\tEmail: ${res.locals.data.email}\tMessage: ${res.locals.data.message}`
         });
+
+        res.locals.info = info;
     } catch(e) {
         next(new StatusError(e.message, 500));
     }
@@ -87,13 +115,14 @@ app.post('/contact', [(req: express.Request, res: express.Response, next:express
     res.send();
 }]);
 
-app.use((err: StatusError, req, res, next) => {
+app.use((err: StatusError, req: express.Request, res: express.Response, next: express.NextFunction) => {
     if (err) {
         console.error(err.message);
         res.status(err.status).json({error:{message:err.message, status:err.status}});
     } else {
+        res.status(200).json({info: res.locals.info});
         next();
     }
 });
 
-app.listen(3000, () => {console.log("Dani senior faas running on port 3000")});
+app.listen(config.get("Port"), () => {console.log(`Dani senior faas running on port ${config.get("Port")}`)});

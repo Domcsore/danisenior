@@ -1,0 +1,15 @@
+{
+    "Port": 3000,
+    "Email": {
+        "outgoingServer": "outgoing_email_server",
+        "user": "example@example.com",
+        "password": "mysecretpassword",
+        "refOptions": {
+            "default": "default@example.com",
+            "options": [
+                {"ref":"contact", "email": "contact@examples.com"},
+                {"ref":"service", "email": "service@example.com"}
+            ]
+        }
+    }
+}

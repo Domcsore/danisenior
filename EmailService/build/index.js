@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const express_1 = __importDefault(require("express"));
+const config_1 = __importDefault(require("config"));
 class StatusError extends Error {
     constructor(message, status) {
         super(message);
@@ -48,16 +49,27 @@ function contactDataFromBody(body) {
         ref: body.ref,
     };
 }
+function getOutgoingEmail(refOptions, ref) {
+    let results = refOptions.options.filter(option => option.ref === ref);
+    let result = results[0];
+    if (result) {
+        console.log("ref email");
+        return result.email;
+    }
+    console.log("default email");
+    return refOptions.default;
+}
 const app = express_1.default();
 app.locals.transporter = nodemailer_1.default.createTransport({
-    host: "",
-    port: 587,
+    host: config_1.default.get('Email.outgoingServer'),
+    port: 465,
     secure: true,
     auth: {
-        user: "test",
-        pass: "test"
+        user: config_1.default.get('Email.user'),
+        pass: config_1.default.get('Email.password')
     }
 });
+app.locals.refs = config_1.default.get('Email.refOptions');
 app.use(express_1.default.json());
 app.post('/contact', [(req, res, next) => {
         try {
@@ -68,11 +80,15 @@ app.post('/contact', [(req, res, next) => {
         }
         next();
     }, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+        let outgoingEmail = getOutgoingEmail(app.locals.refs, res.locals.data.ref);
         try {
             let info = yield app.locals.transporter.sendMail({
                 from: `"${res.locals.data.name}" <${res.locals.data.email}>`,
-                to: "",
+                to: outgoingEmail,
+                subject: `You have an enquiry from ${res.locals.data.name}`,
+                text: `Name: ${res.locals.data.name}\tEmail: ${res.locals.data.email}\tMessage: ${res.locals.data.message}`
             });
+            res.locals.info = info;
         }
         catch (e) {
             next(new StatusError(e.message, 500));
@@ -87,8 +103,9 @@ app.use((err, req, res, next) => {
         res.status(err.status).json({ error: { message: err.message, status: err.status } });
     }
     else {
+        res.status(200).json({ info: res.locals.info });
         next();
     }
 });
-app.listen(3000, () => { console.log("Dani senior faas running on port 3000"); });
+app.listen(config_1.default.get("Port"), () => { console.log(`Dani senior faas running on port ${config_1.default.get("Port")}`); });
 //# sourceMappingURL=index.js.map
