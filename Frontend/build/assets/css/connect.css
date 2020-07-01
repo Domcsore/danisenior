@@ -1,10 +1,9 @@
 main {
   display: flex;
-  flex-direction: column;
-}
+  flex-direction: column; }
+
+#contact-form-app {
+  height: 100%; }
 
 form {
-  height: 100%;
-}
-
-/*# sourceMappingURL=connect.css.map */
+  height: 100%; }

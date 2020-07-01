@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "jsx" :"react",
+        "target": "ES5",
+        "outDir": "./build/assets/js",
+        "module": "CommonJS",
+        "sourceMap": true,
+        "noImplicitAny": true
+    }
+}
