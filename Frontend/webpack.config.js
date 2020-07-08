@@ -1,10 +1,10 @@
 const path = require('path');
 
 module.exports = {
-    entry: ["core-js", "whatwg-fetch", "./src/contactForm.tsx"],
+    entry: ["whatwg-fetch", "./src/contactForm.tsx"],
 
     output: {
-        path: path.join(__dirname, "build/assets/js/"),
+        path: path.resolve(__dirname, "build/assets/js/"),
         filename: "contactForm.js"
     },
 
