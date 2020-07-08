@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    entry: "./src/contactForm.tsx",
+    entry: ["core-js", "whatwg-fetch", "./src/contactForm.tsx"],
 
     output: {
         path: path.join(__dirname, "build/assets/js/"),
@@ -14,6 +14,7 @@ module.exports = {
     devtool: "source-map",
 
     resolve: {
+        modules: ['node_modules'],
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx"]
     },

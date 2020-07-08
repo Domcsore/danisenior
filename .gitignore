@@ -1,5 +1,7 @@
 .idea/
+EmailService/.idea/
 EmailService/node_modules
 EmailService/config/production.json
+Frontend/.idea/
 Frontend/node_modules
 Frontend/build/assets/videos

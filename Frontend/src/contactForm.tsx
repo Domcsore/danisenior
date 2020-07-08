@@ -1,4 +1,3 @@
-import 'core-js';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
@@ -6,7 +5,7 @@ type ContactFormProps = {
     apiEndpoint: string
 }
 
-const ContactForm:React.FunctionComponent<ContactFormProps> = ({apiEndpoint}) => {
+const ContactForm:React.FunctionComponent<ContactFormProps> = ({apiEndpoint: string}) => {
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [message, setMessage] = React.useState("");
@@ -33,6 +32,8 @@ const ContactForm:React.FunctionComponent<ContactFormProps> = ({apiEndpoint}) =>
         const params = (new URL(location.href)).searchParams;
         let ref = params.get("ref") ? params.get("ref") : "home";
 
+        console.log(ref);
+
     }
 
     return (
@@ -46,11 +47,11 @@ const ContactForm:React.FunctionComponent<ContactFormProps> = ({apiEndpoint}) =>
                 </label>
             </div>
             <label className="fill">
-                <textarea name="message" placeholder="Message" onChange={HandleTextAreaChange} value={message}></textarea>
+                <textarea name="message" placeholder="Message" onChange={HandleTextAreaChange} value={message}/>
             </label>
             <button className="secondary" type="submit" onSubmit={HandleSubmit}>connect</button>
         </form>
     )
-}
+};
 
 ReactDOM.render(<ContactForm apiEndpoint={"faas.dominicsore.com/danisenior/contact"} />, document.getElementById("contact-form-app"));
