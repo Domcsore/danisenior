@@ -15,10 +15,10 @@ interface ContactData {
 }
 
 enum FormState {
-    Waiting,
-    Sent,
-    Success,
-    Fail
+    Waiting = "waiting",
+    Sending = "sending",
+    Success = "success",
+    Failed = "failed"
 }
 
 const ContactForm:React.FunctionComponent<ContactFormProps> = (props: ContactFormProps) => {
@@ -47,7 +47,7 @@ const ContactForm:React.FunctionComponent<ContactFormProps> = (props: ContactFor
     function HandleSubmit(e: React.FormEvent) {
         e.preventDefault();
 
-        setFormState(FormState.Sent);
+        setFormState(FormState.Sending);
 
         const params = (new URL(location.href)).searchParams;
         let ref = params.get("ref") ? params.get("ref") : "home";
@@ -69,7 +69,7 @@ const ContactForm:React.FunctionComponent<ContactFormProps> = (props: ContactFor
             body: JSON.stringify(contactData)
         }).then(response => {
             if (response.status !== 200) {
-                setFormState(FormState.Fail);
+                setFormState(FormState.Failed);
                 response.json().then(e => console.log(e));
             } else {
                 setFormState(FormState.Success);
@@ -94,7 +94,7 @@ const ContactForm:React.FunctionComponent<ContactFormProps> = (props: ContactFor
             <label className="fill">
                 <textarea name="message" placeholder="Message" onChange={HandleTextAreaChange} value={message}/>
             </label>
-            <button className="secondary" type="submit" onSubmit={HandleSubmit}>connect</button>
+            <button className={`secondary ${formState}`} type="submit" onSubmit={HandleSubmit}>connect</button>
         </form>
     )
 };

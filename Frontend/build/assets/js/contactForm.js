@@ -20352,10 +20352,10 @@ var React = __webpack_require__(/*! react */ "react");
 var ReactDOM = __webpack_require__(/*! react-dom */ "react-dom");
 var FormState;
 (function (FormState) {
-    FormState[FormState["Waiting"] = 0] = "Waiting";
-    FormState[FormState["Sent"] = 1] = "Sent";
-    FormState[FormState["Success"] = 2] = "Success";
-    FormState[FormState["Fail"] = 3] = "Fail";
+    FormState["Waiting"] = "waiting";
+    FormState["Sending"] = "sending";
+    FormState["Success"] = "success";
+    FormState["Failed"] = "failed";
 })(FormState || (FormState = {}));
 var ContactForm = function (props) {
     var _a = React.useState(""), name = _a[0], setName = _a[1];
@@ -20379,7 +20379,7 @@ var ContactForm = function (props) {
     }
     function HandleSubmit(e) {
         e.preventDefault();
-        setFormState(FormState.Sent);
+        setFormState(FormState.Sending);
         var params = (new URL(location.href)).searchParams;
         var ref = params.get("ref") ? params.get("ref") : "home";
         var contactData = {
@@ -20398,7 +20398,7 @@ var ContactForm = function (props) {
             body: JSON.stringify(contactData)
         }).then(function (response) {
             if (response.status !== 200) {
-                setFormState(FormState.Fail);
+                setFormState(FormState.Failed);
                 response.json().then(function (e) { return console.log(e); });
             }
             else {
@@ -20417,7 +20417,7 @@ var ContactForm = function (props) {
                 React.createElement("input", { type: "email", name: "email", placeholder: "Email", onChange: HandleInputChange, value: email }))),
         React.createElement("label", { className: "fill" },
             React.createElement("textarea", { name: "message", placeholder: "Message", onChange: HandleTextAreaChange, value: message })),
-        React.createElement("button", { className: "secondary", type: "submit", onSubmit: HandleSubmit }, "connect")));
+        React.createElement("button", { className: "secondary " + formState, type: "submit", onSubmit: HandleSubmit }, "connect")));
 };
 ReactDOM.render(React.createElement(ContactForm, { apiEndpoint: "https://faas.dominicsore.com/danisenior/contact" }), document.getElementById("contact-form-app"));
 
