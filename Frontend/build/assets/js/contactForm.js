@@ -20419,8 +20419,7 @@ var ContactForm = function (props) {
             React.createElement("textarea", { name: "message", placeholder: "Message", onChange: HandleTextAreaChange, value: message })),
         React.createElement("button", { className: "secondary", type: "submit", onSubmit: HandleSubmit }, "connect")));
 };
-ReactDOM.render(React.createElement(ContactForm, { apiEndpoint: "http://localhost:3000/contact" }), document.getElementById("contact-form-app"));
-//https://faas.dominicsore.com/danisenior/contact
+ReactDOM.render(React.createElement(ContactForm, { apiEndpoint: "https://faas.dominicsore.com/danisenior/contact" }), document.getElementById("contact-form-app"));
 
 
 /***/ }),
