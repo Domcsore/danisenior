@@ -7,10 +7,25 @@ type ContactFormProps = {
     apiEndpoint: string
 }
 
-const ContactForm:React.FunctionComponent<ContactFormProps> = ({apiEndpoint: string}) => {
+interface ContactData {
+    name: string;
+    email: string;
+    message: string;
+    ref: string;
+}
+
+enum FormState {
+    Waiting,
+    Sent,
+    Success,
+    Fail
+}
+
+const ContactForm:React.FunctionComponent<ContactFormProps> = (props: ContactFormProps) => {
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [message, setMessage] = React.useState("");
+    const [formState, setFormState] = React.useState(FormState.Waiting);
 
     function HandleTextAreaChange(e: React.FormEvent<HTMLTextAreaElement>) {
         const target = e.target as HTMLTextAreaElement;
@@ -21,20 +36,48 @@ const ContactForm:React.FunctionComponent<ContactFormProps> = ({apiEndpoint: str
         const target = e.target as HTMLTextAreaElement;
         switch(target.name) {
             case "name":
-                setName(target.value)
+                setName(target.value);
                 break;
             case "email":
-                setEmail(target.value)
+                setEmail(target.value);
                 break;
         }
     }
 
     function HandleSubmit(e: React.FormEvent) {
         e.preventDefault();
+
+        setFormState(FormState.Sent);
+
         const params = (new URL(location.href)).searchParams;
         let ref = params.get("ref") ? params.get("ref") : "home";
 
-        console.log(ref);
+        let contactData: ContactData = {
+            name: name,
+            email: email,
+            message: message,
+            ref: ref
+        };
+
+        fetch(props.apiEndpoint, {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(contactData)
+        }).then(response => {
+            if (response.status !== 200) {
+                setFormState(FormState.Fail);
+                response.json().then(e => console.log(e));
+            } else {
+                setFormState(FormState.Success);
+                console.log("success");
+            }
+        }).catch(e => {
+            console.log(e);
+        })
 
     }
 
@@ -56,4 +99,4 @@ const ContactForm:React.FunctionComponent<ContactFormProps> = ({apiEndpoint: str
     )
 };
 
-ReactDOM.render(<ContactForm apiEndpoint={"faas.dominicsore.com/danisenior/contact"} />, document.getElementById("contact-form-app"));
+ReactDOM.render(<ContactForm apiEndpoint={"https://faas.dominicsore.com/danisenior/contact"} />, document.getElementById("contact-form-app"));

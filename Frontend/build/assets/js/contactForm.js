@@ -20350,11 +20350,18 @@ __webpack_require__(/*! core-js */ "./node_modules/core-js/index.js");
 __webpack_require__(/*! whatwg-fetch */ "./node_modules/whatwg-fetch/fetch.js");
 var React = __webpack_require__(/*! react */ "react");
 var ReactDOM = __webpack_require__(/*! react-dom */ "react-dom");
-var ContactForm = function (_a) {
-    var string = _a.apiEndpoint;
-    var _b = React.useState(""), name = _b[0], setName = _b[1];
-    var _c = React.useState(""), email = _c[0], setEmail = _c[1];
-    var _d = React.useState(""), message = _d[0], setMessage = _d[1];
+var FormState;
+(function (FormState) {
+    FormState[FormState["Waiting"] = 0] = "Waiting";
+    FormState[FormState["Sent"] = 1] = "Sent";
+    FormState[FormState["Success"] = 2] = "Success";
+    FormState[FormState["Fail"] = 3] = "Fail";
+})(FormState || (FormState = {}));
+var ContactForm = function (props) {
+    var _a = React.useState(""), name = _a[0], setName = _a[1];
+    var _b = React.useState(""), email = _b[0], setEmail = _b[1];
+    var _c = React.useState(""), message = _c[0], setMessage = _c[1];
+    var _d = React.useState(FormState.Waiting), formState = _d[0], setFormState = _d[1];
     function HandleTextAreaChange(e) {
         var target = e.target;
         setMessage(target.value);
@@ -20372,9 +20379,35 @@ var ContactForm = function (_a) {
     }
     function HandleSubmit(e) {
         e.preventDefault();
+        setFormState(FormState.Sent);
         var params = (new URL(location.href)).searchParams;
         var ref = params.get("ref") ? params.get("ref") : "home";
-        console.log(ref);
+        var contactData = {
+            name: name,
+            email: email,
+            message: message,
+            ref: ref
+        };
+        fetch(props.apiEndpoint, {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(contactData)
+        }).then(function (response) {
+            if (response.status !== 200) {
+                setFormState(FormState.Fail);
+                response.json().then(function (e) { return console.log(e); });
+            }
+            else {
+                setFormState(FormState.Success);
+                console.log("success");
+            }
+        }).catch(function (e) {
+            console.log(e);
+        });
     }
     return (React.createElement("form", { onSubmit: HandleSubmit },
         React.createElement("div", { className: "inline-two-input" },
@@ -20386,7 +20419,8 @@ var ContactForm = function (_a) {
             React.createElement("textarea", { name: "message", placeholder: "Message", onChange: HandleTextAreaChange, value: message })),
         React.createElement("button", { className: "secondary", type: "submit", onSubmit: HandleSubmit }, "connect")));
 };
-ReactDOM.render(React.createElement(ContactForm, { apiEndpoint: "faas.dominicsore.com/danisenior/contact" }), document.getElementById("contact-form-app"));
+ReactDOM.render(React.createElement(ContactForm, { apiEndpoint: "http://localhost:3000/contact" }), document.getElementById("contact-form-app"));
+//https://faas.dominicsore.com/danisenior/contact
 
 
 /***/ }),
