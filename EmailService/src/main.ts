@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer";
 import express from "express";
 import config from "config";
+import cors from 'cors';
 
 interface ContactData {
     name: string;
@@ -64,13 +65,15 @@ function getOutgoingEmail(refOptions: IRefOptions, ref: string): string {
     let result = results[0];
 
     if (result) {
-        console.log("ref email")
+        console.log("ref email");
         return result.email;
     }
 
     console.log("default email");
     return refOptions.default;
 }
+
+// Server implementation
 
 const app = express();
 
@@ -87,6 +90,7 @@ app.locals.transporter = nodemailer.createTransport({
 app.locals.refs = <IRefOptions>config.get('Email.refOptions');
 
 app.use(express.json());
+app.use(cors());
 
 app.post('/contact', [(req: express.Request, res: express.Response, next:express.NextFunction) => {
     try {
