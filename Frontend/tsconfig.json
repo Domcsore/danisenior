@@ -5,6 +5,7 @@
         "outDir": "./build/assets/js",
         "module": "CommonJS",
         "sourceMap": true,
-        "noImplicitAny": true
+        "noImplicitAny": true,
+        "lib": ["es2015", "dom"]
     }
 }

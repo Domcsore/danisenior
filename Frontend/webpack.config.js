@@ -1,22 +1,24 @@
 const path = require('path');
 
 module.exports = {
-    entry: ["whatwg-fetch", "./src/contactForm.tsx"],
+    context: path.resolve(__dirname),
+
+    entry: ["./src/contactForm.tsx"],
 
     output: {
         path: path.resolve(__dirname, "build/assets/js/"),
         filename: "contactForm.js"
     },
 
-    mode: "production",
+    mode: "development",
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
 
     resolve: {
-        modules: ['node_modules'],
+        //modules: ['node_modules'],
         // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: [".ts", ".tsx"]
+        extensions: [".ts", ".tsx", ".js"]
     },
 
     module: {
