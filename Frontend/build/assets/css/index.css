@@ -1,15 +1,37 @@
 header {
-  display: flex;
-  justify-content: space-between;
+  margin-bottom: 4rem;
+}
+@media screen and (min-width: 600px) {
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+header h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+@media screen and (min-width: 600px) {
+  header h1 {
+    margin-bottom: 0;
+  }
 }
 header #cta {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
+  min-height: 6rem;
+}
+@media screen and (min-width: 600px) {
+  header #cta {
+    min-height: 0;
+  }
 }
 header #cta button {
   width: 100%;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 main {
@@ -20,23 +42,31 @@ main #overview {
   flex-shrink: 0;
   margin: auto 0;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
-main #overview > section:first-child {
-  min-width: 40%;
-  max-width: 40%;
+@media screen and (min-width: 600px) {
+  main #overview {
+    flex-direction: row;
+  }
 }
-main #overview > section:last-child {
-  min-width: 53%;
-  max-width: 53%;
+main #overview > section {
+  margin-bottom: 4rem;
+}
+@media screen and (min-width: 600px) {
+  main #overview > section:first-child {
+    min-width: 38%;
+    max-width: 38%;
+    margin-bottom: 0;
+  }
+  main #overview > section:last-child {
+    min-width: 56%;
+    max-width: 56%;
+  }
 }
 main #overview > section h3 {
   text-align: center;
   margin-bottom: 0.8em;
-}
-main #overview > section#dj {
-  display: flex;
-  flex-direction: column;
 }
 main #overview > section > section {
   grid-column-gap: 1rem;
@@ -46,15 +76,15 @@ main #overview > section > section.grid {
   display: -ms-grid;
   display: grid;
 }
+main #overview > section > section.grid > img {
+  display: block;
+  max-width: 100%;
+}
 main #overview > section > section#singer-tiles {
   grid-template-columns: 1fr 1fr 1fr;
   -ms-grid-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   -ms-grid-rows: 1fr 1fr 1fr;
-}
-main #overview > section > section#singer-tiles > img {
-  display: block;
-  max-width: 100%;
 }
 main #overview > section > section#singer-tiles > img:nth-child(1) {
   grid-column: 1;
@@ -111,34 +141,34 @@ main #overview > section > section#singer-tiles > img:nth-child(9) {
   -ms-grid-row: 3;
 }
 main #overview > section > section#dj-tiles {
-  flex-basis: 100%;
   grid-template-columns: 1fr 1fr;
   -ms-grid-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   -ms-grid-rows: 1fr 1fr;
 }
-main #overview > section > section#dj-tiles > div {
-  background-size: cover;
+main #overview > section > section#dj-tiles > img {
+  display: block;
+  max-width: 100%;
 }
-main #overview > section > section#dj-tiles > div:nth-child(1) {
+main #overview > section > section#dj-tiles > img:nth-child(1) {
   grid-column: 1;
   -ms-grid-column: 1;
   grid-row: 1;
   -ms-grid-row: 1;
 }
-main #overview > section > section#dj-tiles > div:nth-child(2) {
+main #overview > section > section#dj-tiles > img:nth-child(2) {
   grid-column: 2;
   -ms-grid-column: 2;
   grid-row: 1;
   -ms-grid-row: 1;
 }
-main #overview > section > section#dj-tiles > div:nth-child(3) {
+main #overview > section > section#dj-tiles > img:nth-child(3) {
   grid-column: 1;
   -ms-grid-column: 1;
   grid-row: 2;
   -ms-grid-row: 2;
 }
-main #overview > section > section#dj-tiles > div:nth-child(4) {
+main #overview > section > section#dj-tiles > img:nth-child(4) {
   grid-column: 2;
   -ms-grid-column: 2;
   grid-row: 2;

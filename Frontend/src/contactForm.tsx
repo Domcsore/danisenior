@@ -26,6 +26,7 @@ const ContactForm:React.FunctionComponent<ContactFormProps> = (props: ContactFor
     const [email, setEmail] = React.useState("");
     const [message, setMessage] = React.useState("");
     const [formState, setFormState] = React.useState(FormState.Waiting);
+    const [responseMessage, setResponseMessage] = React.useState("");
 
     function HandleTextAreaChange(e: React.FormEvent<HTMLTextAreaElement>) {
         const target = e.target as HTMLTextAreaElement;
@@ -70,32 +71,37 @@ const ContactForm:React.FunctionComponent<ContactFormProps> = (props: ContactFor
         }).then(response => {
             if (response.status !== 200) {
                 setFormState(FormState.Fail);
+                setResponseMessage("Something went wrong, please try again in a moment.");
                 response.json().then(e => console.log(e));
             } else {
                 setFormState(FormState.Success);
-                console.log("success");
+                setResponseMessage("Your message was sent, thank you for getting in touch.");
             }
         }).catch(e => {
+            setFormState(FormState.Fail);
+            setResponseMessage("Something went wrong, please try again in a moment.")
             console.log(e);
         })
-
     }
 
     return (
-        <form onSubmit={HandleSubmit}>
-            <div className="inline-two-input">
-                <label>
-                    <input type="text" name="name" placeholder="Name" onChange={HandleInputChange} value={name}/>
+        <React.Fragment>
+            <form onSubmit={HandleSubmit}>
+                <div className="inline-two-input">
+                    <label>
+                        <input type="text" name="name" placeholder="Name" onChange={HandleInputChange} value={name}/>
+                    </label>
+                    <label>
+                        <input type="email" name="email" placeholder="Email" onChange={HandleInputChange} value={email}/>
+                    </label>
+                </div>
+                <label className="fill">
+                    <textarea name="message" placeholder="Message" onChange={HandleTextAreaChange} value={message}/>
                 </label>
-                <label>
-                    <input type="email" name="email" placeholder="Email" onChange={HandleInputChange} value={email}/>
-                </label>
-            </div>
-            <label className="fill">
-                <textarea name="message" placeholder="Message" onChange={HandleTextAreaChange} value={message}/>
-            </label>
-            <button className="secondary" type="submit" onSubmit={HandleSubmit}>connect</button>
-        </form>
+                <button className="secondary" type="submit" onSubmit={HandleSubmit}>connect</button>
+            </form>
+            <div id={"contact-response"}>{responseMessage}</div>
+        </React.Fragment>
     )
 };
 

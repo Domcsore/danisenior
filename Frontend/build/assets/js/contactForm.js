@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/contactForm.tsx");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -20362,6 +20362,7 @@ var ContactForm = function (props) {
     var _b = React.useState(""), email = _b[0], setEmail = _b[1];
     var _c = React.useState(""), message = _c[0], setMessage = _c[1];
     var _d = React.useState(FormState.Waiting), formState = _d[0], setFormState = _d[1];
+    var _e = React.useState(""), responseMessage = _e[0], setResponseMessage = _e[1];
     function HandleTextAreaChange(e) {
         var target = e.target;
         setMessage(target.value);
@@ -20399,39 +20400,32 @@ var ContactForm = function (props) {
         }).then(function (response) {
             if (response.status !== 200) {
                 setFormState(FormState.Fail);
+                setResponseMessage("Something went wrong, please try again in a moment.");
                 response.json().then(function (e) { return console.log(e); });
             }
             else {
                 setFormState(FormState.Success);
-                console.log("success");
+                setResponseMessage("Your message was sent, thank you for getting in touch.");
             }
         }).catch(function (e) {
+            setFormState(FormState.Fail);
+            setResponseMessage("Something went wrong, please try again in a moment.");
             console.log(e);
         });
     }
-    return (React.createElement("form", { onSubmit: HandleSubmit },
-        React.createElement("div", { className: "inline-two-input" },
-            React.createElement("label", null,
-                React.createElement("input", { type: "text", name: "name", placeholder: "Name", onChange: HandleInputChange, value: name })),
-            React.createElement("label", null,
-                React.createElement("input", { type: "email", name: "email", placeholder: "Email", onChange: HandleInputChange, value: email }))),
-        React.createElement("label", { className: "fill" },
-            React.createElement("textarea", { name: "message", placeholder: "Message", onChange: HandleTextAreaChange, value: message })),
-        React.createElement("button", { className: "secondary", type: "submit", onSubmit: HandleSubmit }, "connect")));
+    return (React.createElement(React.Fragment, null,
+        React.createElement("form", { onSubmit: HandleSubmit },
+            React.createElement("div", { className: "inline-two-input" },
+                React.createElement("label", null,
+                    React.createElement("input", { type: "text", name: "name", placeholder: "Name", onChange: HandleInputChange, value: name })),
+                React.createElement("label", null,
+                    React.createElement("input", { type: "email", name: "email", placeholder: "Email", onChange: HandleInputChange, value: email }))),
+            React.createElement("label", { className: "fill" },
+                React.createElement("textarea", { name: "message", placeholder: "Message", onChange: HandleTextAreaChange, value: message })),
+            React.createElement("button", { className: "secondary", type: "submit", onSubmit: HandleSubmit }, "connect")),
+        React.createElement("div", { id: "contact-response" }, responseMessage)));
 };
 ReactDOM.render(React.createElement(ContactForm, { apiEndpoint: "https://faas.dominicsore.com/danisenior/contact" }), document.getElementById("contact-form-app"));
-
-
-/***/ }),
-
-/***/ 0:
-/*!***********************************!*\
-  !*** multi ./src/contactForm.tsx ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! ./src/contactForm.tsx */"./src/contactForm.tsx");
 
 
 /***/ }),

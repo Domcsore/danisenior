@@ -3,11 +3,13 @@ const path = require('path');
 module.exports = {
     context: path.resolve(__dirname),
 
-    entry: ["./src/contactForm.tsx"],
-
+    entry: {
+        contactForm: "./src/contactForm.tsx",
+        hamburger: "./src/hamburger.ts"
+    },
     output: {
         path: path.resolve(__dirname, "build/assets/js/"),
-        filename: "contactForm.js"
+        filename: "[name].js"
     },
 
     mode: "development",
@@ -48,5 +50,8 @@ module.exports = {
     externals: {
         "react": "React",
         "react-dom": "ReactDOM"
+    },
+    devServer: {
+        contentBase: './build'
     }
 };

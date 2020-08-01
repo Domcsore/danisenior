@@ -4,6 +4,7 @@
 }
 #images img {
   max-height: 300px;
+  max-width: 33%;
 }
 
 /*# sourceMappingURL=me.css.map */

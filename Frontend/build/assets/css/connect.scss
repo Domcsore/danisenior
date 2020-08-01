@@ -1,10 +1,24 @@
+body{
+  height: 100vh;
+}
+
 main {
   display: flex;
   flex-direction: column;
+  height: calc(100% - 4rem);
+  
+  @media screen and (min-width: 600px) {
+    height: 100%;
+  }
 }
 
 #contact-form-app {
   height: 100%;
+}
+
+#contact-response {
+  padding: 1em;
+  text-align: center;
 }
 
 form {
