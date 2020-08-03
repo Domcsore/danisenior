@@ -80,9 +80,13 @@ main {
           display: -ms-grid;
           display: grid;
 
-          &>img {
+          &>a {
             display: block;
             max-width: 100%;
+
+            & > img {
+              max-width: 100%;
+            }
           }
         }
 
@@ -92,7 +96,7 @@ main {
           grid-template-rows: 1fr 1fr 1fr;
           -ms-grid-rows: 1fr 1fr 1fr;
 
-          & > img {
+          & > a {
             &:nth-child(1) {
               grid-column: 1;
               -ms-grid-column: 1;

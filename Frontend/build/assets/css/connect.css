@@ -1,17 +1,31 @@
-/* Error: expected "{".
- *   ,
- * 6 | @import '_variables';
- *   |                     ^
- *   '
- *   connect.scss 6:21  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: expected \"{\".\a   \2577 \a 6 \2502  @import '_variables';\d\a   \2502                      ^\a   \2575 \a   connect.scss 6:21  root stylesheet";
+body {
+  height: 100vh;
 }
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 4rem);
+}
+@media screen and (min-width: 600px) {
+  main {
+    height: 100%;
+  }
+}
+
+#contact-form-app {
+  flex-grow: 1;
+  display: flex;
+}
+
+#contact-response {
+  padding: 1em;
+  text-align: center;
+}
+
+form button[type=submit].sending {
+  background-color: black;
+  color: white;
+}
+
+/*# sourceMappingURL=connect.css.map */

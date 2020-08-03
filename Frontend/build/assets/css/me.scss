@@ -1,6 +1,7 @@
 #images {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 
   img {
     max-height: 300px;

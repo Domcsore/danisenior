@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 body{
   height: 100vh;
 }
-=======
-@import '_variables';
->>>>>>> 40e441ccb45f677db5997d703c2648fa66e72b9b
 
 main {
   display: flex;
@@ -17,7 +13,8 @@ main {
 }
 
 #contact-form-app {
-  height: 100%;
+  flex-grow: 1;
+  display: flex;
 }
 
 #contact-response {
@@ -26,7 +23,6 @@ main {
 }
 
 form {
-  height: 100%;
 
   button[type=submit] {
     &.sending {

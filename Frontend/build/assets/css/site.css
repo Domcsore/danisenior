@@ -1,17 +1,351 @@
-/* Error: expected "{".
- *     ,
- * 149 |   position: relative;
- *     |                     ^
- *     '
- *   site.scss 149:21  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: 'Error: expected "{".\a     \2577 \a 149 \2502    position: relative;\d\a     \2502                      ^\a     \2575 \a   site.scss 149:21  root stylesheet';
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=Raleway:wght@300;400&display=swap");
+@keyframes fadeIn {
+  0% {
+    top: -10px;
+    opacity: 0;
+  }
+  100% {
+    top: 0px;
+    opacity: 1;
+  }
 }
+* {
+  box-sizing: border-box;
+  flex: 0 1 auto;
+}
+
+@font-face {
+  font-family: "stoner";
+  src: url("../fonts/stoner-Regular.woff"), url("../fonts/stoner-Regular.ttf") format("truetype"), url("../fonts/stoner-Regular.otf") format("opentype");
+}
+body {
+  background: #0F0F0F;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+}
+@media screen and (min-width: 600px) {
+  body {
+    display: flex;
+  }
+}
+@media screen and (min-width: 2000px) {
+  body {
+    font-size: 20px;
+  }
+}
+
+h1 {
+  font-size: 7em;
+  font-family: "stoner", cursive;
+}
+
+h2 {
+  font-size: 5em;
+  font-family: "stoner", cursive;
+}
+
+h3 {
+  font-size: 3em;
+  font-family: "stoner", cursive;
+  margin-bottom: 0.8em;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+a:visited {
+  color: white;
+}
+a:active {
+  color: white;
+}
+
+p {
+  margin: 2em 0;
+  line-height: 1.5em;
+}
+p a {
+  text-decoration: underline;
+}
+
+button {
+  background: none;
+  border: 2px solid white;
+  outline: none;
+  color: white;
+  font-family: "Caveat", cursive;
+  font-size: 1.3rem;
+  padding: 0 1em 0.3em 1em;
+  cursor: pointer;
+}
+button.secondary {
+  background: white;
+  color: #0F0F0F;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+td {
+  padding: 0.5rem 2rem 0.5rem 0;
+}
+
+.hamburger {
+  position: relative;
+  height: 2.5rem;
+  width: 3rem;
+}
+.hamburger .hamburger-bar {
+  top: 1rem;
+  position: absolute;
+  background: black;
+  height: 0.5rem;
+  width: 3rem;
+  border-radius: 1rem;
+}
+.hamburger .hamburger-bar::before, .hamburger .hamburger-bar::after {
+  content: "";
+  position: absolute;
+  background: black;
+  height: 0.5rem;
+  width: 3rem;
+  border-radius: 1rem;
+}
+.hamburger .hamburger-bar::before {
+  top: -1rem;
+}
+.hamburger .hamburger-bar::after {
+  top: 1rem;
+}
+
+#hamburger-container {
+  display: flex;
+  padding: 1em;
+  justify-content: flex-end;
+  background: white;
+}
+@media screen and (min-width: 600px) {
+  #hamburger-container {
+    display: none;
+  }
+}
+
+nav {
+  position: relative;
+  padding: 3em 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 4rem);
+  width: 100%;
+  position: absolute;
+  z-index: 10;
+  background: #0F0F0F;
+  left: -100%;
+  transition: left 500ms;
+}
+nav.open {
+  left: 0;
+}
+@media screen and (min-width: 600px) {
+  nav {
+    width: auto;
+    position: relative;
+    left: 0;
+    height: 100vh;
+  }
+}
+nav > a {
+  margin-bottom: 3em;
+  text-transform: uppercase;
+  padding-bottom: 6px;
+  position: relative;
+  left: 0;
+  border-bottom: 1px #0F0F0F solid;
+  transition: left 200ms;
+}
+nav > a.active {
+  border-bottom: 1px white solid;
+}
+nav > a:focus {
+  outline: none;
+  border-bottom: 1px white solid;
+}
+nav #socials {
+  max-width: 100%;
+  margin: auto 0 0 0;
+  display: -ms-grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+@media screen and (min-width: 600px) {
+  nav #socials {
+    display: -ms-grid;
+    -ms-grid-columns: 1fr 1fr 1fr;
+    -ms-grid-rows: 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+nav #socials a {
+  margin-bottom: 0;
+  max-width: 3em;
+  max-height: 3em;
+  display: block;
+}
+@media screen and (min-width: 600px) {
+  nav #socials a:nth-child(1) {
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+  }
+}
+@media screen and (min-width: 600px) {
+  nav #socials a:nth-child(2) {
+    -ms-grid-column: 2;
+    -ms-grid-row: 1;
+  }
+}
+@media screen and (min-width: 600px) {
+  nav #socials a:nth-child(3) {
+    -ms-grid-column: 3;
+    -ms-grid-row: 1;
+  }
+}
+@media screen and (min-width: 600px) {
+  nav #socials a:nth-child(4) {
+    -ms-grid-column: 1;
+    -ms-grid-row: 2;
+  }
+}
+@media screen and (min-width: 600px) {
+  nav #socials a:nth-child(5) {
+    -ms-grid-column: 2;
+    -ms-grid-row: 2;
+  }
+}
+nav #socials a img {
+  max-width: 100%;
+}
+nav #socials a:focus {
+  outline: 1px white solid;
+}
+
+main {
+  padding: 3em 2em;
+  flex-basis: 100%;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+main > h2 {
+  margin-bottom: 0.6em;
+}
+@media screen and (min-width: 2000px) {
+  main {
+    max-width: 2000px;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+}
+form button {
+  align-self: center;
+  padding-left: 4em;
+  padding-right: 4em;
+}
+
+input, textarea {
+  font-family: "Raleway", sans-serif;
+  font-size: 1em;
+  padding: 1em;
+  outline: none;
+  background: #0F0F0F;
+  color: white;
+  border: 2px solid white;
+  width: 100%;
+  margin-bottom: 2em;
+}
+
+label.fill {
+  flex-grow: 1;
+  padding-bottom: 2em;
+  display: flex;
+}
+.article-list {
+  display: flex;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+.article-list article {
+  margin-bottom: 3em;
+  flex-basis: 100%;
+}
+@media screen and (min-width: 600px) {
+  .article-list article {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+  .article-list article:nth-child(odd) {
+    padding-right: 2em;
+  }
+  .article-list article:nth-child(even) {
+    padding-left: 2em;
+  }
+}
+
+.aspect-sixteen-nine {
+  position: relative;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+}
+.aspect-sixteen-nine img {
+  position: absolute;
+  max-width: 100%;
+}
+.aspect-sixteen-nine.dual-image img {
+  position: absolute;
+  max-width: 45%;
+}
+.aspect-sixteen-nine.dual-image img:last-child {
+  right: 0;
+}
+.aspect-sixteen-nine.dual-image img:first-child {
+  left: 0;
+}
+.aspect-sixteen-nine iframe, .aspect-sixteen-nine video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.inline-two-input {
+  display: block;
+}
+@media screen and (min-width: 600px) {
+  .inline-two-input {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.inline-two-input label {
+  flex-basis: 48%;
+}
+
+/*# sourceMappingURL=site.css.map */

@@ -144,10 +144,7 @@ td {
 }
 
 nav {
-<<<<<<< HEAD
-=======
   position: relative;
->>>>>>> 40e441ccb45f677db5997d703c2648fa66e72b9b
   padding: 3em 2em;
   display: flex;
   flex-direction: column;
@@ -255,6 +252,7 @@ main {
 form {
   display: flex;
   flex-direction: column;
+  min-width: 100%;
 
   button {
     align-self: center;
@@ -276,11 +274,12 @@ input, textarea {
 }
 
 label.fill {
-  flex-basis: 100%;
+  flex-grow: 1;
   padding-bottom: 2em;
+  display: flex;
 
   textarea {
-    height: 100%;
+
   }
 }
 
