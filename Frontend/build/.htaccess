@@ -1,0 +1,7 @@
+RewriteEngine   On
+RewriteRule     ^me/?$              me.html
+RewriteRule     ^media/?$           media.html
+RewriteRule     ^mental-health/?$   mentalhealth.html
+RewriteRule     ^music/?$           music.html
+RewriteRule     ^services/?$        services.html
+RewriteRule     ^connect/?$         connect.html

@@ -15,10 +15,10 @@ interface ContactData {
 }
 
 enum FormState {
-    Waiting,
-    Sent,
-    Success,
-    Fail
+    Waiting = "waiting",
+    Sending = "sending",
+    Success = "success",
+    Failed = "failed"
 }
 
 const ContactForm:React.FunctionComponent<ContactFormProps> = (props: ContactFormProps) => {
@@ -48,7 +48,7 @@ const ContactForm:React.FunctionComponent<ContactFormProps> = (props: ContactFor
     function HandleSubmit(e: React.FormEvent) {
         e.preventDefault();
 
-        setFormState(FormState.Sent);
+        setFormState(FormState.Sending);
 
         const params = (new URL(location.href)).searchParams;
         let ref = params.get("ref") ? params.get("ref") : "home";
@@ -70,8 +70,12 @@ const ContactForm:React.FunctionComponent<ContactFormProps> = (props: ContactFor
             body: JSON.stringify(contactData)
         }).then(response => {
             if (response.status !== 200) {
+<<<<<<< HEAD
                 setFormState(FormState.Fail);
                 setResponseMessage("Something went wrong, please try again in a moment.");
+=======
+                setFormState(FormState.Failed);
+>>>>>>> 40e441ccb45f677db5997d703c2648fa66e72b9b
                 response.json().then(e => console.log(e));
             } else {
                 setFormState(FormState.Success);
@@ -98,10 +102,19 @@ const ContactForm:React.FunctionComponent<ContactFormProps> = (props: ContactFor
                 <label className="fill">
                     <textarea name="message" placeholder="Message" onChange={HandleTextAreaChange} value={message}/>
                 </label>
+<<<<<<< HEAD
                 <button className="secondary" type="submit" onSubmit={HandleSubmit}>connect</button>
             </form>
             <div id={"contact-response"}>{responseMessage}</div>
         </React.Fragment>
+=======
+            </div>
+            <label className="fill">
+                <textarea name="message" placeholder="Message" onChange={HandleTextAreaChange} value={message}/>
+            </label>
+            <button className={`secondary ${formState}`} type="submit" onSubmit={HandleSubmit}>connect</button>
+        </form>
+>>>>>>> 40e441ccb45f677db5997d703c2648fa66e72b9b
     )
 };
 

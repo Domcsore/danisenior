@@ -1,0 +1,14 @@
+@mixin fade-in($delay) {
+    position: relative;
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: 800ms;
+    animation-delay: $delay;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease;
+}
+
+@keyframes fadeIn {
+    0% {top: -10px; opacity: 0;}
+    100% {top: 0px; opacity: 1;}
+}

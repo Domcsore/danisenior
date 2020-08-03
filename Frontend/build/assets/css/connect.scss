@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 body{
   height: 100vh;
 }
+=======
+@import '_variables';
+>>>>>>> 40e441ccb45f677db5997d703c2648fa66e72b9b
 
 main {
   display: flex;
@@ -23,4 +27,11 @@ main {
 
 form {
   height: 100%;
+
+  button[type=submit] {
+    &.sending {
+      background-color: black;
+      color: white;
+    }
+  }
 }
