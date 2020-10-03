@@ -140,7 +140,6 @@ td {
 }
 
 nav {
-  position: relative;
   padding: 3em 2em;
   display: flex;
   flex-direction: column;
@@ -159,8 +158,9 @@ nav.open {
 @media screen and (min-width: 600px) {
   nav {
     width: auto;
-    position: relative;
+    position: sticky;
     left: 0;
+    top: 0;
     height: 100vh;
   }
 }
@@ -251,11 +251,6 @@ main {
 }
 main > h2 {
   margin-bottom: 0.6em;
-}
-@media screen and (min-width: 2000px) {
-  main {
-    max-width: 2000px;
-  }
 }
 
 form {
