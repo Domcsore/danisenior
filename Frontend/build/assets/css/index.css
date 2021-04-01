@@ -38,6 +38,43 @@ main {
   display: flex;
   flex-direction: column;
 }
+main #feature {
+  padding: 2rem;
+  border: 2px solid white;
+  margin-bottom: 4rem;
+}
+main #feature img {
+  max-width: 100%;
+}
+main #feature h3 {
+  text-align: center;
+  margin-top: 0.8rem;
+  margin-bottom: 0;
+}
+main #feature #featuretext {
+  display: flex;
+  flex-direction: column;
+}
+main #feature #featurebutton {
+  margin-top: auto;
+  align-self: center;
+}
+@media screen and (min-width: 800px) {
+  main #feature {
+    display: flex;
+    max-width: 100%;
+  }
+  main #feature img {
+    max-width: 300px;
+  }
+  main #feature h3 {
+    text-align: left;
+    margin-top: 0;
+  }
+  main #feature #featuretext {
+    margin-left: 0.8rem;
+  }
+}
 main #overview {
   flex-shrink: 0;
   margin: auto 0;

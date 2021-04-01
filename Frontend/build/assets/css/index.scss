@@ -38,6 +38,51 @@ main {
   display: flex;
   flex-direction: column;
 
+  #feature {
+    padding: 2rem;
+    border: 2px solid white;
+    margin-bottom: 4rem;
+
+    img {
+      max-width: 100%;
+    }
+
+    h3 {
+      text-align: center;
+      margin-top: 0.8rem;
+      margin-bottom: 0;
+    }
+
+    #featuretext {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #featurebutton {
+      margin-top:auto;
+      align-self: center;
+    }
+
+    @media screen and (min-width: 800px) {
+      display: flex;
+      max-width: 100%;
+
+      img {
+        max-width: 300px;
+      }
+
+      h3 {
+        text-align: left;
+        margin-top: 0;
+        
+      }
+
+      #featuretext {
+        margin-left: 0.8rem;
+      }
+    }
+  }
+
   #overview {
     //IE11 Fix
     flex-shrink: 0;

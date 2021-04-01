@@ -82,6 +82,27 @@ button {
   }
 }
 
+a.button {
+  background: none;
+  border: 2px solid white;
+  outline: none;
+  color: white;
+  font-family: 'Caveat',
+  cursive;
+  font-size: 1.3rem;
+  padding:0.3em 1em 0.3em 1em;
+  cursor: pointer;
+
+  &.secondary {
+    background: white;
+    color: #0F0F0F;
+  }
+
+  &.fullwidth {
+    width: 100%;
+  }
+}
+
 table {
   border-collapse: collapse;
 }
