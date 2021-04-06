@@ -42,20 +42,19 @@ main {
     padding: 2rem;
     border: 2px solid white;
     margin-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
 
     img {
       max-width: 100%;
+      align-self: center;
+      margin-bottom: 2.6em;
     }
 
     h3 {
       text-align: center;
-      margin-top: 0.8rem;
-      margin-bottom: 0;
-    }
-
-    #featuretext {
-      display: flex;
-      flex-direction: column;
+      margin-bottom: 0.8em;
+      align-self: center;
     }
 
     #featurebutton {

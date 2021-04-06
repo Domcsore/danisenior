@@ -42,18 +42,18 @@ main #feature {
   padding: 2rem;
   border: 2px solid white;
   margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
 }
 main #feature img {
   max-width: 100%;
+  align-self: center;
+  margin-bottom: 2.6em;
 }
 main #feature h3 {
   text-align: center;
-  margin-top: 0.8rem;
-  margin-bottom: 0;
-}
-main #feature #featuretext {
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 0.8em;
+  align-self: center;
 }
 main #feature #featurebutton {
   margin-top: auto;

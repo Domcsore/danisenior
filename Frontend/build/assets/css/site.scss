@@ -101,6 +101,11 @@ a.button {
   &.fullwidth {
     width: 100%;
   }
+
+  &.sans {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+  }
 }
 
 table {

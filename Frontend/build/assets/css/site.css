@@ -102,6 +102,10 @@ a.button.secondary {
 a.button.fullwidth {
   width: 100%;
 }
+a.button.sans {
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+}
 
 table {
   border-collapse: collapse;
